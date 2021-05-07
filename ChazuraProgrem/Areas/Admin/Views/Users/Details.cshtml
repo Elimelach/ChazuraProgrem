@@ -1,0 +1,163 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Details";
+    int i = 0;
+}
+
+<h1>Details</h1>
+
+
+<h4>@Model.FirstName @Model.LastName</h4>
+@{
+    if (!string.IsNullOrEmpty(Model.Address))
+    {
+        <div>
+            <p>@Model.Address @Model.City @Model.State @Model.ZipCode</p>
+        </div>
+    }
+}
+<hr />
+<div class="row ">
+    <div class="col-sm-3">
+        <p>Username: @Model.UserName</p>
+    </div>
+    <div class="col-sm-3"> <p>Password: @Model.SavedPassword</p></div>
+    <div class="col-sm-3"><p>Email: @Model.Email</p></div>
+    @{
+        if (Model.RoleNames.Count > 0)
+        {
+            string role = "";
+            foreach (var roly in Model.RoleNames)
+            {
+                role += roly + ",";
+            }
+            role = role.Substring(0, role.Length - 1);
+            <div class="col-sm-3">
+                <p>Roles: @role</p>
+            </div>
+        }
+    }
+
+</div>
+@{
+    if (Model.LimudCharts != null || Model.CustomLimudim != null)
+    {
+        <div id="carousel-example" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+
+                @if (Model.LimudCharts != null)
+                {
+                    foreach (var l in Model.LimudCharts)
+                    {
+                        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3
+                     @if (i == 0)
+                     {
+                         i++;
+                         <text>active</text>
+                     }">
+                            <div class="card ">
+                                <div class="card-header">
+                                    <p>@l.ChazurahType</p>
+                                </div>
+                                <div class="card-body">
+                                    @if (l.MeschtaName != null)
+                                    {
+                                        <p>Meschta: @l.MeschtaName</p>
+                                    }
+                                    <p>Date Started: @l.DateStarted.ToShortDateString()</p>
+                                    <p>Years to continue: @l.YearsChazurah.ToString()</p>
+                                    <p>Email notify: @l.EmailNotify.ToString()</p>
+                                </div>
+                                @*<div class="card-footer">
+
+                                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@l.ChartId">Edit</a>
+                                        <form method="post" asp-action="Delete">
+                                            <input hidden name="ChartId" value="@l.ChartId" />
+                                            <button type="submit" class="btn btn-primary" id="delBut">Delete</button>
+                                        </form>
+
+                                    </div>*@
+                            </div>
+                        </div>
+                    }
+                }
+                @{
+                    if (@Model.CustomLimudim != null)
+                    {
+                        List<CustomLimud> customs = new List<CustomLimud>();
+                        List<string> tytleString = new List<string>();
+                        var limuds = from custem in @Model.CustomLimudim
+                                     where custem.ChazuraTimes == ChazuraTimes.FirstTime
+                                     orderby custem.Type, custem.Date
+                                     select custem;
+
+                        foreach (var item in limuds)
+                        {
+                            if (tytleString.Contains(item.Type))
+                            {
+                                continue;
+                            }
+                            customs.Add(item);
+                            tytleString.Add(item.Type);
+                        };
+                        foreach (var c in customs)
+                        {
+                            <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3
+                         @if (i == 0)
+                         {
+                             i++;
+                         <text>active</text>
+                         }">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <p>@c.Type</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Date Started: @c.Date.ToShortDateString()</p>
+                                        <p>Email notify: @c.EmailNotify.ToString()</p>
+                                    </div>
+                                    @*<div class="card-footer">
+
+                                            <a class="btn btn-primary" asp-action="CustomDetail" asp-route-id="@c.Type">View all</a>
+                                            <form method="post" asp-action="CustomDelete">
+                                                <input hidden name="Type" value="@c.Type" />
+                                                <button type="submit" class="btn btn-primary" id="delBut">Delete all</button>
+                                            </form>
+
+                                        </div>*@
+                                </div>
+                            </div>
+                        }
+
+
+
+                    }
+                }
+
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    }
+}
+@section styles{
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
+    <link href="~/bootstrap-carousel-multiple-items/assets/css/animate.css" rel="stylesheet" />
+    <link href="~/bootstrap-carousel-multiple-items/assets/css/carousel.css" rel="stylesheet" />
+
+}
+@section Scripts{
+    <script src="~/bootstrap-carousel-multiple-items/assets/js/jquery.backstretch.js"></script>
+    <script src="~/bootstrap-carousel-multiple-items/assets/js/wow.js"></script>
+    <script src="~/bootstrap-carousel-multiple-items/assets/js/scripts.js"></script>
+}
+
+
+

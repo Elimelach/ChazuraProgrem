@@ -1,0 +1,73 @@
+﻿@model List<LimudimDayList>
+@{
+    ViewBag.Title = "7 day schadule";
+}
+<h3 class="text-center">סדר הלימודים מן @Model[0].HebrawData עד @Model[Model.Count - 1].HebrawData</h3>
+<div class="container-fluid">
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+        <div class="carousel-inner row w-10 mxauto" role="listbox">
+            @{
+                bool first = true;
+
+                foreach (var l in Model)
+                {
+                    <div class="carousel-item col-md-4
+                        @if (first==true)
+                         {
+                         first = false;
+                         <text>active</text>
+                         }
+                       ">
+                        <div class="card    m-2">
+                            <div class="card-header">
+                                <p class="text-center mb-0">@l.DateOfList.DayOfWeek.ToString()</p>
+                                <p class="text-center">@l.DateOfList.ToShortDateString() ~ @l.HebrawData</p>
+                            </div>
+                            <div class="card-body ">
+                                @foreach (var d in l)
+                                {
+                                    <div class="card-text row @{
+                                        if (d.Completed == true)
+                                        {
+                                         <text>comp</text>
+                                        }
+                                   }
+                                       ">
+                                        <p class="col-5">@d.LimudStringHebraw &nbsp;<span class="badge badge-primary badge-pill">@d.LimudTimes</span></p>
+                                        @*<div class="form-group">*@
+                                        <a class="btn btn-primary h-100 mr-1" asp-action="Detail" asp-route-id="@d.LimudChartId" asp-route-ChazurahType="@d.ChazurahType"
+                                           asp-route-date="@d.LimudDate.GetDashDate()" asp-route-pageId="@d.LimudId" asp-route-description="@d.LimudStringEng.GetDashString()" asp-route-ChazuraTimes="@d.ChazuraTimes">Detail</a>
+                                        <partial name="_CompletedPartial" model="d" />
+                                        @*</div>*@
+                                    </div>
+
+                                }
+                                @if (l.Count < 1)
+                                {
+                                    <div class="text-center">Nothing scheduled</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+            <i class="fa fa-chevron-left fa-lg text-muted"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+            <i class="fa fa-chevron-right fa-lg text-muted"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/Carousel.js"></script>
+    <script src="~/js/ComplrtedAjaxMulti.js"></script>
+}
+@section styles{
+    <link href="~/css/Carousel.css" rel="stylesheet" />
+}

@@ -1,0 +1,44 @@
+﻿@model LimudDTO
+@{
+    if (Model.ChazurahType != ChazurahType.Custom)
+    {
+        <form class="form-inline compForm" method="post" asp-action="Completed" >
+            <input hidden asp-for="LimudChartId"value="@Model.LimudChartId" />
+            <input hidden asp-for="LimudId"value="@Model.LimudId" />
+            <input hidden asp-for="ChazuraTimes" value="@Model.ChazuraTimes"/>
+            <input class="completed" hidden asp-for="Completed"value="@Model.Completed" />
+            <input class="compId" hidden asp-for="CompletedId"value="@Model.CompletedId" />
+            <button type="submit" class="btn btn-primary btnComp">
+                @{
+                    if (Model.Completed == true)
+                    {
+                        <text>Unmark completed</text>
+                    }
+                    else
+                    {
+                        <text>Mark as completed</text>
+                    }
+                }
+            </button>
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-action="CompletedCustem" class="form-inline compForm" >
+            <input hidden asp-for="LimudChartId" value="@Model.LimudChartId"/>
+            <input class="completed" hidden asp-for="Completed" value="@Model.Completed"/>
+            <button type="submit" class="btn btn-primary btnComp">
+                @{
+                    if (Model.Completed == true)
+                    {
+                        <text>Unmark completed</text>
+                    }
+                    else
+                    {
+                        <text>Mark as completed</text>
+                    }
+                }
+            </button>
+        </form>
+    }
+}

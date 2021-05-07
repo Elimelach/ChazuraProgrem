@@ -1,0 +1,71 @@
+﻿@model SponsorData
+@{
+    bool isNew = Model.SponsId == 0 ? true : false;
+    string info = isNew ? "Add" : "Edit";
+    ViewBag.Title = info + " sponsor";
+
+    var route = ViewBag.routes;
+}
+
+
+<div class="entry-form mt-3">
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="SponsId" hidden />
+        <input asp-for="UserId" hidden />
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="Date">Date</label>
+            <input asp-for="Date" type="date" class="form-control col-sm-7">
+            <span asp-validation-for="Date" class="text-danger col-sm-2"></span>
+        </div>
+        <div class=" row offset-sm-3">
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.InMemory">
+                <label class="form-check-label" asp-for="GetSponserType">לע"נ</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.ToHealth">
+                <label class="form-check-label" asp-for="GetSponserType">לרפואת</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.ToSake">
+                <label class="form-check-label" asp-for="GetSponserType">לזכות</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.InHonor">
+                <label class="form-check-label" asp-for="GetSponserType">לכבוד</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.Other">
+                <label class="form-check-label" asp-for="GetSponserType">other</label>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="DescriptionName">Name etc</label>
+            <input asp-for="DescriptionName" class="form-control col-sm-7">
+            <span asp-validation-for="DescriptionName" class="text-danger col-sm-2"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="DescriptionElse">Sponsored by</label>
+            <input asp-for="DescriptionElse" class="form-control col-sm-7">
+            <span asp-validation-for="DescriptionElse" class="text-danger col-sm-2"></span>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="Status">Status</label>
+            <select asp-for="Status" class="form-control col-sm-7">
+                <partial name="_StatusPartial" model="@Model.Status" />
+            </select>
+            <span asp-validation-for="Status" class="text-danger col-sm-2"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">@info</button>
+        <a asp-action="List" asp-all-route-data="@route" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

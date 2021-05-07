@@ -1,0 +1,55 @@
+﻿@model List<SponserDTO>
+@{
+    ViewBag.Title = "Pick day to sponsor";
+    DateTime dateStart = Model[0].Date;
+    bool goPast = dateStart.Date > DateTime.Now.Date;
+    bool goFwd = dateStart.Date < DateTime.Now.AddMonths(6).Date;
+}
+<h1>Select a date you want to sponsor</h1>
+<h2>Price is $36.00</h2>
+<div class="row">
+    <div class="col-sm-6"> <h6>To submit click your desired date</h6></div>
+    <div class="col-sm-6 form-group">
+        @{
+            if (goPast)
+            {
+                <a asp-action="DatePicker" asp-route-date="@dateStart.AddDays(-30).GetDashDate()"
+                   class="btn btn-primary">Back 30 days</a>
+            }
+            if (goFwd)
+            {
+                <a asp-action="DatePicker" asp-route-date="@dateStart.AddDays(30).GetDashDate()"
+                   class="btn btn-primary">Forward 30 days</a>
+            }
+        }
+    </div>
+</div>
+<div class="row text-center">
+    <form asp-action="DatePicker" method="post" class="spin-at-Submit">
+        @{
+            foreach (var dto in Model)
+            {
+                if (dto.Status == Status.rejected)
+                {
+                    <button type="submit" value="@dto.Date" name="Date" class="submit-noStyle p-0 bg-transparent rounded">
+                        <section class="date-pick rounded-lg card">
+                            <p class="card-text">@CalendarHebrew.GetHebrewDateString(dto.Date)</p>
+                            <p class="card-text">@dto.Date.ToShortDateString()</p>
+                            <p class="card-text">@StatusStringefy.GetStatusStringForAvalDates(dto.Status)</p>
+                        </section>
+                    </button>
+                }
+                else
+                {
+                    <button disabled class="submit-noStyle p-0 bg-transparent rounded">
+                        <section class="date-pick rounded-lg card">
+                            <p>@CalendarHebrew.GetHebrewDateString(dto.Date)</p>
+                            <p>@dto.Date.ToShortDateString()</p>
+                            <p>@StatusStringefy.GetStatusStringForAvalDates(dto.Status)</p>
+                        </section>
+                    </button>
+                }
+            }
+        }
+    </form>
+</div>

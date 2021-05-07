@@ -1,0 +1,28 @@
+﻿#overlayer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #00000080;
+    /*opacity: .5;*/
+    top: 0;
+    bottom: 0;
+}
+#lightBox {
+    position:fixed;
+    top: 20%;
+    height: 43%;
+    background: linear-gradient(45deg, #13651d, #81b5eafa);
+
+}
+    #lightBox .form-group {
+        position: absolute;
+        bottom: 2%;
+        right: 0;
+        left: 0;
+        text-align: center;
+    }
+#lightBox h2 {
+   text-align: center;
+   padding: 3%;
+}
+   

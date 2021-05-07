@@ -1,0 +1,9 @@
+﻿@{
+    if (Model.TotalPages > 1 )
+	{
+		for (int i = 1; i <= Model.TotalPages; i++)
+        {
+        <my-paging-link number="@i" current="@Model.CurrentRoute" />
+        } 
+	}
+}

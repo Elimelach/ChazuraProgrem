@@ -1,0 +1,49 @@
+﻿@model SponsorInfo
+@{
+    ViewBag.title = "Confirming";
+}
+<h1>Please confirm all information </h1>
+<h3>sponsoring the data of @Model.SponsorData.Date.ToShortDateString() ~ @Model.SponsorData.Date.ToHebrewDate()</h3>
+<div class="row">
+    <div class="col-sm-6">
+        <h5>payment information </h5>
+        <div class="form-group">
+            <label>Card Number: </label>
+            <label>@Model.Payment.CC_Number</label>
+        </div>
+        <div class="form-group">
+            <label>Type: </label>
+            <label>@Model.Payment.CardType.ToString()</label>
+        </div>
+        <div class="form-group">
+            <label>Exp Date: </label>
+            <label>@Model.Payment.ExpDate</label>
+        </div>
+        <div class="form-group">
+            <label>Security number: </label>
+            <label>@Model.Payment.BCN</label>
+        </div>
+        <div class="form-group">
+            <label>Mailing zip code: </label>
+            <label>@Model.Payment.ZipCode</label>
+        </div>
+
+    </div>
+    <div class="col-sm-6">
+        <h5>text display </h5>
+        <sponsor-display sponsor="@Model.SponsorData"></sponsor-display>
+        <div class="form-group">
+            <label>Amount:</label>
+            <label>@Model.Payment.Amount</label>
+        </div>
+        <div class="form-group">
+            <form asp-action="Confirm" method="post"class="spin-at-Submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                <a asp-action="NameDetails" class="btn btn-outline-primary">Back</a>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary">Cancel</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,109 @@
+﻿@model SponsorRegisterVM
+@{
+    ViewBag.Title = "Register";
+}
+
+<h1 class="text-center">Register</h1>
+<hr />
+<div class="row">
+    <div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3 my-bg-transform">
+        <form method="post" asp-action="RegisterSponsor" class="spin-at-Submit" asp-route-returnUrl="@Model.ReturnUrl">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-row mb-0">
+                <div class="form-group col-sm">
+                    <label class="col-12" asp-for="FirstName">First Name</label>
+                    <input class="form-control col-12" asp-for="FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group col-sm ">
+                    <label class="col-12" asp-for="LastName">Last Name</label>
+                    <input class="form-control col-12" asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger col-12"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group  row">
+                    <label class="col-12" asp-for="Email"></label>
+                    <input class="form-control col-12" asp-for="Email" />
+                    <span asp-validation-for="Email" class="text-danger col-12"></span>
+                </div>
+            </div>
+            <div class="form-group  ">
+                 <label asp-for="Address"class="col-12"></label>
+                    <input class="form-control col-12" asp-for="Address" />
+                    <span asp-validation-for="Address" class="text-danger col-12"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm ">
+                     <label asp-for="City"class=" col-12"></label>
+                        <input class="form-control col-12" asp-for="City" />
+                        <span asp-validation-for="City" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group col-5 col-sm-3  ">
+                    <label asp-for="State"class=" col-12"></label>
+                        <input class="form-control col-12" asp-for="State" />
+                        <span asp-validation-for="State" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group col  ">
+                    <label asp-for="ZipCode"class=" col-12"></label>
+                        <input class="form-control col-12" asp-for="ZipCode" />
+                        <span asp-validation-for="ZipCode" class="text-danger col-12"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row">
+                    <label asp-for="Username" class="col-12">Username</label>
+                    <input asp-for="Username" class="form-control col-12" />
+                    <span asp-validation-for="Username" class="text-danger col-12"></span>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+                <div class="form-group  row">
+                    <label asp-for="Password" class="col-12">Password</label>
+                    <input class="form-control col-12" asp-for="Password" />
+                    <span asp-validation-for="Password" class="text-danger col-12"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group  row">
+                    <label asp-for="ConfirmPassword " class="col-12">Confirm Password</label>
+                    <input class="form-control col-12" asp-for="ConfirmPassword" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger col-12"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2  col-sm-4">
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" title="Remember Me" asp-for="RememberMe">
+                        <label class="form-check-label" asp-for="RememberMe">Remember Me</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary ">Register</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-2 col">
+                    Already registered? <a asp-action="LogIn"
+                                           asp-all-route-data="@(
+                                               new Dictionary<string,string>{ { "returnURL" , Model.ReturnUrl }
+                                                   ,{ "fromSponser" , true.ToString() } })">Log In</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,76 @@
+﻿@model Payment
+
+@{
+    ViewData["Title"] = "Payment info";
+}
+
+<h1 class="text-center">Payment Info</h1>
+<hr />
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+
+        @if (Model != null)
+        {
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="DateEnterd" class="control-label">Date Enterd: </label>
+                    <label asp-for="DateEnterd" class="control-label"> @Model.DateEnterd.ToShortDateString()</label>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateCharged" class="control-label">Date Charged: </label>
+                    <label asp-for="DateCharged" class="control-label"> @(Model.DateCharged?.ToShortDateString() ?? "empty")</label>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="CC_Number" class="control-label">Card number: </label>
+                    <label asp-for="CC_Number" class="control-label"> @Model.CC_Number</label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CardType" class="control-label">Type: </label>
+                    <label asp-for="CardType" class="control-label"> @Model.CardType.ToString()</label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZipCode" class="control-label">ZipCode: </label>
+                    <label asp-for="ZipCode" class="control-label">@Model.ZipCode</label>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="ExpDate" class="control-label">Exp Date: </label>
+                    <label asp-for="ExpDate" class="control-label"> @Model.ExpDate</label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BCN" class="control-label">Security number: </label>
+                    <label asp-for="BCN" class="control-label"> @Model.BCN</label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Amount" class="control-label">Amount: </label>
+                    <label asp-for="Amount" class="control-label">@($"{Model.Amount:c}")</label>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="GetStatus" class="control-label">Status: </label>
+                    <label asp-for="GetStatus" class="control-label"> @(StatusCon.GetStatusString(Model.GetStatus))</label>
+                </div>
+
+                <div class="form-group">
+                    @*<a asp-action="EditPayment" asp-route-id="@Model.PaymentId" class="btn btn-primary">Edit</a>*@
+                    <a asp-action="List" asp-all-route-data="@ViewBag.routes" class="btn btn-primary">Back to List</a>
+                </div>
+            </div></div>
+        }
+        else
+        {
+            <p>There is no payment associated with this sponsor</p>
+            <a asp-action="List" asp-all-route-data="@ViewBag.routes"class="btn btn-primary">Back to List</a>
+        }
+    </div>
+</div>
+
+
+

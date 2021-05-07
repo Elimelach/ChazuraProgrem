@@ -1,0 +1,91 @@
+﻿@model ScheduleVM
+@{
+    ViewBag.Title = "Edit Limud";
+}
+
+<h4 class="text-center">Edit @Model.GetLimudString(Model.LimudChart.ChazurahType)</h4>
+<hr />
+<div class="row">
+    <div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3 my-bg-transform">
+        <form method="post" asp-action="EditP"class="spin-at-Submit">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <input asp-for="LimudChart.ChartId" hidden />
+            <input asp-for="LimudChart.ChazurahType" hidden />
+            @{
+                if (@Model.LimudChart.ChazurahType == ChazurahType.ShasMeshchtaDaf
+                    || Model.LimudChart.ChazurahType == ChazurahType.ShasMeschteAumid)
+                {
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label asp-for="LimudChart.MeshctaCode">Mesachta ~ מסכת</label>
+                        </div>
+                        <div class="col-12">
+                            <select asp-for="LimudChart.MeshctaCode" class="form-control "
+                                    asp-items="@(new SelectList(Model.GetMeschtaDic()
+                                     ,"Key","Value",Model.LimudChart.MeshctaCode))"></select>
+                        </div>
+                        <div class="col-12 text-warning">
+                            <span asp-validation-for="LimudChart.MeshctaCode"></span>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label asp-for="LimudChart.DateStarted">Date started</label>
+                </div>
+                <div class="col-sm-8">
+                    <p>You could use the hebrew select list for help </p>
+                </div>
+                <div class="col-sm-6">
+                    <input asp-for="LimudChart.DateStarted" type="date" class="form-control " />
+                </div>
+                <div class="col-sm-6">
+                    <select id="hdl" class="form-control "
+                            asp-items="@(new SelectList(Model.DatesList,"Key","Value",Model.LimudChart.DateStarted))"></select>
+                </div>
+                <div class="col-12 text-warning">
+                    <span asp-validation-for="LimudChart.DateStarted"></span>
+                </div>
+            </div>
+            <div class="form-group  row">
+                <div class="col-12"> <label asp-for="LimudChart.YearsChazurah">Years to continue the chazura</label></div>
+                <div class=" col-12">
+                    <input class="form-control" asp-for="LimudChart.YearsChazurah" />
+                </div>
+                <div class="col-12 text-warning">
+                    <span asp-validation-for="LimudChart.YearsChazurah"></span>
+                </div>
+
+            </div>
+            <div class="form-group col-12">
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" asp-for="LimudChart.EmailNotify">
+                    <label class="form-check-label" asp-for="LimudChart.EmailNotify">Email  notify </label>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a asp-action="Detail" asp-all-route-data="@Model.Route" class="btn btn-outline-primary">Cancel</a>
+                </div>
+            </div>
+
+
+
+
+        </form>
+    </div>
+</div>
+<script>
+   
+    $("#hdl").change(() => {
+        $("#LimudChart_DateStarted").val($("#hdl").val());
+    });
+</script>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    
+}

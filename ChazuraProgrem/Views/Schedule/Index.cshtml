@@ -1,0 +1,39 @@
+﻿@model ScheduleVM
+@{
+    ViewBag.Title = "Scheduler";
+}
+
+
+<div class="row">
+    <div id="limudTypes" class="col-sm-6 col-md-3 list-group-horizontal-md">
+        <h2>Pick Your Limud </h2>
+        <a class="list-group-item " href="#pv" action="0">כל הש"ס דף חדש כל יום</a>
+        <a class="list-group-item " href="#pv" action="1">מסכת אחת דף חדש כל יום</a>
+        <a class="list-group-item  " href="#pv" action="3">כל הש"ס עמוד חדש כל יום</a>
+        <a class="list-group-item  " href="#pv" action="4">מסכת אחת עמוד חדש כל יום</a>
+        @*<a class="list-group-item disabled " href="#pv">ששה סדרי משנה פרק א' חדש כל יום</a>
+        <a class="list-group-item disabled " href="#pv">ששה סדרי משנה משנה א' חדש כל יום</a>
+        <a class="list-group-item disabled " href="#pv">מסכת משניות פרק א' חדש כל יום</a>
+        <a class="list-group-item disabled " href="#pv">מסכת משניות משנה א' חדש כל יום</a>*@
+        <a class="list-group-item" action="2" href="#pv">ברור לעצמך לימוד ליום</a>
+    </div>
+    <div id="pv" class="col">
+        @{
+            if (Model.LimudChart.ChazurahType == ChazurahType.Custom)
+            {
+                <partial name="_PartialCustom" model="@Model.CustomVM" />
+            }
+            else
+            {
+                <partial name="_PartLimudFormShas" />
+            }
+        }
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/Schedule_getLimudForm.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

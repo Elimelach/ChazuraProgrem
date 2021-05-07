@@ -1,0 +1,12 @@
+﻿@model User
+@if (Model!=null)
+{
+<li class="nav-item border border-light rounded p-2 log-admin">
+    <form method="post" asp-action="RemoveUserOfSess" asp-controller="Users"
+          asp-area="Admin">
+        <input type="submit" value="Log Out"
+               class="btn btn-outline-light pb-0 pt-0" />
+        <span class="text-light">logged in @Model.FirstName's acct &nbsp;</span>
+    </form>
+</li>
+}

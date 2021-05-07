@@ -1,0 +1,23 @@
+﻿@model User
+@{
+    ViewBag.Title = "User detail";
+}
+<h1>User details</h1>
+
+
+<h4>@Model.FirstName @Model.LastName</h4>
+@{
+    if (!string.IsNullOrEmpty(Model.Address))
+    {
+        <div>
+            <p>@Model.Address @Model.City @Model.State @Model.ZipCode</p>
+        </div>
+    }
+}
+
+
+    <div class="col-sm-3">
+        <p>Username: @Model.UserName</p>
+    </div>
+    <div class="col-sm-3"> <p>Password: @Model.SavedPassword</p></div>
+    <div class="col-sm-3"><p>Email: @Model.Email</p></div>

@@ -1,0 +1,56 @@
+﻿@model SponsorData
+@{
+    ViewBag.Title = "Sponsor Info";
+    string hebrawDate = CalendarHebrew.GetHebrewDateString(Model.Date);
+}
+<div class="entry-form">
+    <h1>Enter your information </h1>
+    <h4>sponsoring <span class="text-primary">@Model.Date.ToShortDateString() ~ @hebrawDate</span></h4>
+    <form asp-action="NameDetails" method="post"class="spin-at-Submit">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="SponsId" hidden />
+        <input asp-for="UserId" hidden />
+        <input asp-for="Date" hidden />
+        <div class=" row offset-sm-3">
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.InMemory">
+                <label class="form-check-label" asp-for="GetSponserType">לע"נ</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.ToHealth">
+                <label class="form-check-label" asp-for="GetSponserType">לרפואת</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input"asp-for="GetSponserType" value="@SponserType.ToSake">
+                <label class="form-check-label" asp-for="GetSponserType">לזכות</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.InHonor">
+                <label class="form-check-label" asp-for="GetSponserType">לכבוד</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="GetSponserType" value="@SponserType.Other">
+                <label class="form-check-label" asp-for="GetSponserType">other</label>
+            </div>
+           
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="DescriptionName">Name etc</label>
+            <input asp-for="DescriptionName" class="form-control col-sm-7">
+            <span asp-validation-for="DescriptionName" class="text-danger col-sm-2"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="DescriptionElse">Sponsored by</label>
+            <input asp-for="DescriptionElse" class="form-control col-sm-7">
+            <span asp-validation-for="DescriptionElse" class="text-danger col-sm-2"></span>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

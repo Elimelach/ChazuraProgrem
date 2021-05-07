@@ -1,0 +1,24 @@
+﻿@model AdminRoleSettVM
+@{
+}
+<h4 class="text-center">Select or deselect the desired roles</h4>
+<form asp-action="EditAdminRoles" method="post">
+    <input asp-for="UserId" hidden />
+    <div class="form-group row">
+        <div class=" col-sm-5">
+            <div class="mb-3 form-check form-switch">
+                <input class="form-check-input" type="checkbox" title="Admin Role" asp-for="IsAdmin">
+                <label class="form-check-label" asp-for="IsAdmin">Admin Role</label>
+            </div>
+            
+        </div>
+        <div class=" col-sm-5">
+            <div class="mb-3 form-check form-switch">
+                <input class="form-check-input" type="checkbox" title="Manager Role" asp-for="IsManager">
+                <label class="form-check-label" asp-for="IsManager">Manager Role</label>
+            </div>
+           
+        </div>
+    </div>
+    <button type="submit"class="btn btn-primary">Save</button>
+</form>

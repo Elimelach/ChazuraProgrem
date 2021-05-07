@@ -1,0 +1,175 @@
+﻿@model GridVM<SponsorData>
+@{
+    ViewBag.Title = "Sponsor list";
+    var date = $"{DateTime.Now.AddDays(-5).Date:yyyy-MM-dd}";
+}
+
+<form method="post" asp-action="FilterDate">
+    <div class="form-group row">
+        <div class="col-sm-2 text-sm-right">
+            <label>Starting from:</label>
+        </div>
+        <div class="col-sm-4"><input name="filterDate" type="date" value="@date" class="form-control" /></div>
+        <button type="submit" class="btn btn-primary">Select</button>
+        <button type="submit" class="btn btn-outline-primary mr-1" name="clear" value="true">Clear</button>
+    </div>
+</form>
+
+
+    @*<div class="offset-sm-1 col-sm-10">*@
+    <div class=" ml-sm-3 mr-sm-3">
+        <div class="row">
+            <ul class="nav nav-pills mt-5 mb-0 col-6">
+                <li class="nav-item">
+                    <my-sorting-link filter-field="all" class="nav-link" mark-it-active filter-only
+                                     current="@Model.CurrentRoute">View all</my-sorting-link>
+
+                </li>
+                <li class="nav-item">
+                    <my-sorting-link filter-field="aproved" class="nav-link" mark-it-active filter-only
+                                     current="@Model.CurrentRoute">View aproved</my-sorting-link>
+
+                </li>
+                <li class="nav-item">
+                    <my-sorting-link filter-field="pending" class="nav-link" mark-it-active filter-only
+                                     current="@Model.CurrentRoute">View pending</my-sorting-link>
+
+                </li>
+                <li class="nav-item">
+                    <my-sorting-link filter-field="rejected" class="nav-link" mark-it-active filter-only
+                                     current="@Model.CurrentRoute">View rejected</my-sorting-link>
+
+                </li>
+            </ul>
+            <label class="col-1 mt-auto mb-1">View from</label>
+            <ul class="nav nav-pills mr-auto mt-5 mb-0 col-5">
+                <li class="nav-item">
+                    <my-sorting-link start-filter="last-month" class="nav-link" mark-it-active start-filter-only
+                                     current="@Model.CurrentRoute">Last Month</my-sorting-link>
+
+                </li>
+                <li class="nav-item">
+                    <my-sorting-link start-filter="today" class="nav-link" mark-it-active start-filter-only
+                                     current="@Model.CurrentRoute">Today</my-sorting-link>
+
+                </li>
+                <li class="nav-item">
+                    <my-sorting-link start-filter="all" class="nav-link" mark-it-active start-filter-only
+                                     current="@Model.CurrentRoute">All</my-sorting-link>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    @*</div>*@
+    @*<div class="offset-sm-1 col-sm-10">*@
+<div class="row ml-sm-3 mr-sm-3">
+    <table class="table table-bordered table-striped table-sm bg-white">
+        <thead class="thead-dark ">
+            <tr>
+                <th>
+                    <my-sorting-link sort-field="@nameof(SponsorData.Date)"
+                                     current="@Model.CurrentRoute">Date</my-sorting-link>
+                </th>
+                <th>
+                    <my-sorting-link sort-field="@nameof(ChazuraProgram.Models.User.UserName)"
+                                     current="@Model.CurrentRoute">By UserName</my-sorting-link>
+                </th>
+                <th>Sponsored by</th>
+                <th>
+                    Dedicate name
+                </th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Change status</th>
+                <th></th>
+                <th>View card information</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SponsorData sponsor in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @sponsor.Date.ToHebrewDate()
+                        <br />
+                        @sponsor.Date.ToShortDateString()
+                    </td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@sponsor.User.Id">
+
+                            @sponsor.User?.UserName
+                        </a>
+                    </td>
+                    <td>
+                        @sponsor.DescriptionElse
+                    </td>
+                    <td>
+                        @sponsor.DescriptionName
+                    </td>
+                    <td>
+                        @sponsor.GetSponserType.ToString()
+                    </td>
+                    <td>
+                        @sponsor.Status.ToString()
+                    </td>
+
+                    <td>
+                        <form method="post" asp-action="SetStatus">
+                            <input hidden name="SponsId" value="@sponsor.SponsId" />
+                            @{
+                                if (sponsor.Status != Status.accepted)
+                                {
+                                    <button class="btn btn-outline-primary" type="submit" name="status" value="@Status.accepted">Accept</button>
+                                }
+                                if (sponsor.Status != Status.pending)
+                                {
+                                    <button class="btn btn-outline-primary" type="submit" name="status" value="@Status.pending">Pending</button>
+                                }
+                                if (sponsor.Status != Status.rejected)
+                                {
+                                    <button class="btn btn-outline-primary" type="submit" name="status" value="@Status.rejected">Reject</button>
+                                }
+                            }
+                        </form>
+                    </td>
+                    <td>
+                        <div class="row form-group">
+                            <a class=" btn btn-primary" asp-action="Edit" asp-route-id="@sponsor.SponsId">Edit</a>
+
+                            <button value="@sponsor.SponsId" type="button" class="btn btn-primary btnDelete">Delete</button>
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-action="Payment" asp-route-id="@sponsor.SponsId" class="btn btn-primary">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*</div>*@
+</div>
+<div>
+    <a class=" btn btn-primary" asp-action="Edit">Add</a>
+</div>
+<partial name="_PagingLinksPartial" />
+@section LightBox{
+    <div id="overlayer" style="display:none">
+        <div id="lightBox" class="rounded-lg col-sm-4 offset-sm-4">
+            <h2>Confirm Deletion</h2>
+            <form method="post" asp-action="Delete">
+                <input value="" name="id"id="deleteId" hidden />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/LightBoxDelete_adminSpon.js"></script>
+}
+@section styles{
+    <link href="~/css/LightBoxDelete.css" rel="stylesheet" /> 
+}

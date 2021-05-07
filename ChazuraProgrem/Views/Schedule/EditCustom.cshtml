@@ -1,0 +1,69 @@
+﻿@model CustomVM
+@{
+    ViewBag.Title = "Edit Custom Limud";
+}
+<h4 class="text-center">
+    Edit @Model.Description of Title @Model.Title
+    <a asp-action="EditTitle" asp-route-title="@Model.Title" class="btn btn-primary">Edit Title</a>
+</h4>
+<h6 class="text-info">
+    Note that by editing it will only effect the current page
+    @*<a asp-controller="About" asp-action="Instruction" asp-fragment="changeDateCustem">...learn more</a>*@
+</h6>
+<hr />
+<div class="row">
+    <div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3 my-bg-transform">
+        <form method="post" asp-action="EditCustom" class="spin-at-Submit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="Title" hidden />
+            <input asp-for="CustomId" hidden />
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label asp-for="Date">Date started</label>
+                </div>
+                <div class="col-sm-6">
+                    <p>You could use the hebrew select list for help </p>
+                </div>
+                <div class="col-sm-6">
+                    <input asp-for="Date" type="date" class="form-control " />
+                </div>
+                <div class="col-sm-6">
+                    <select id="hdl" class="form-control "
+                            asp-items="@(new SelectList(Model.DatesList,"Key","Value",Model.Date))"></select>
+                </div>
+                <div class="col-12 text-warning">
+                    <span asp-validation-for="Date"></span>
+                </div>
+            </div>
+            <div class="mb-3 form-check form-switch">
+                <input class="form-check-input" type="checkbox" asp-for="EmailNotify">
+                <label class="form-check-label" asp-for="EmailNotify">Email  notify </label>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a class="btn btn-outline-primary" asp-action="Detail" asp-all-route-data="@Model.Route">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+</div>
+<script>
+   
+    $("#hdl").change(() => {
+        $("#Date").val($("#hdl").val());
+    });
+</script>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

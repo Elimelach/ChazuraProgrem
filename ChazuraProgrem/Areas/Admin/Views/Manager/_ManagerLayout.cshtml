@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+<ul class="nav nav-tabs mt-2 mb-3">
+
+    <li class="nav-item ">
+        <a asp-action="SponsorDefaultSett" asp-controller="Manager" asp-area="Admin"
+           class="nav-link text-white" mark-it-active action-only>
+            Default Sponsor Settings
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-action="EditAdminRoles" asp-controller="Manager" asp-area="Admin"
+           class="nav-link text-white" mark-it-active action-only>
+            Edit Admin Roles
+        </a>
+    </li>
+</ul>
+@section styles{
+    @RenderSection("styles", required: false)
+}
+@RenderBody()
+@section Scripts{
+    @RenderSection("Scripts", required: false)
+}
+@section LightBox{
+    @RenderSection("LightBox", required: false)
+}
+
+

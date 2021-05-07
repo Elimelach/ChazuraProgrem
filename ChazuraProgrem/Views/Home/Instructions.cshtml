@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Using me";
+}
+<div class="col-sm-8 col-xl-6 offset-sm-2 offset-xl-3">
+    <h1>Using Me</h1>
+
+
+    <div class="accordion" id="accordionMain">
+        <div class="accordion-item">
+            <h4 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Get Started
+                </button>
+            </h4>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionMain">
+                <div class="accordion-body">
+                    <h4>register</h4>
+                    <p>In order to be able to use this site you must register to create an account.</p>
+                    <p>So if you are not yet registered please click <b>Register</b> </p>
+                    <img src="~/Images/InstructionsImg/RegisterShot.jpg" alt="img.register" class="img-fluid" />
+                    <p>On the register page fill out all the fields and submit, you will then be able to start scheduling.</p>
+                    <p>But if you want to sponsor a day, you will have to provide additional information beforehand.</p>
+                    <h4>logging in</h4>
+                    <p>If you are already registered you could login by clicking the login button.</p>
+                    <img src="~/Images/InstructionsImg/LogInShot.jpg" alt="img.login" class="img-fluid" />
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h4 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Scheduling
+                </button>
+            </h4>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+                <div class="accordion-body">
+                    <p>Click on the schedule button  </p>
+                    <img src="~/Images/InstructionsImg/ScheduleShot.jpg"class="img-fluid" />
+                    <p>
+                        and as the page displays you will see a sidebar of several options
+                        in general there are 5 options 4 are similar and 1 is not.
+                    </p>
+                    <img src="~/Images/InstructionsImg/LimudimTypesList.jpg" />
+                    <p>The four that are similar are all on  Shas with the difference between them is as follows</p>
+                    <ul>
+                        <li>
+                            1 is for completing all shas through a schedule of a daf a day
+                        </li>
+                        <li>
+
+                            2 is for completing all shas through a schedule of a half daf a day
+                        </li>
+                        <li>
+
+                            3 is completing a single mesechte through a schedule of a daf a day
+                        </li>
+                        <li>
+
+                            4 is completing a single mesechte through a schedule of a half daf a day
+                        </li>
+
+                    </ul>
+                    <p>
+                        so to schedule 1 and 2 just fill out the day to start and how much years you want to continue
+                        and check if you want to get an email reminder
+                    </p>
+                    <p>
+                        To schedule  3 and 4 its all the above in addition of picking which mesechte
+                        the 5th option is to entering a custom limud for each day and with that option you must enter
+                        a each day separately and the system will bring it up when its time to learn it again
+                        so to schedule a custom schedule you should fill out the title of you want to give to all the particular limudim that you will enter each day accosted with that title
+                        then you should enter a brief description of that particular limud for that day
+                        and when is the first time you want learn it and how much years to continue
+                        viewing your schedule
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h4 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Viewing your schedule
+                </button>
+            </h4>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionMain">
+                <div class="accordion-body">
+                    <p>
+                        To view your schedule, you have two options
+                    </p>
+                    <ul>
+                        <li>The schedule of 1 day</li>
+                        <li>The schedule of multiple days up to 30</li>
+                    </ul>
+                    <p>
+                        To view 1 day click one the homepage view or for another day other than today
+                        enter the data in the input box
+                    </p>
+                    <img src="~/Images/InstructionsImg/View1shot.jpg" class="img-fluid" />
+                    <p>To view multiple days click on the view multiple button </p>
+                    <img src="~/Images/InstructionsImg/ViewMultiBtn.jpg" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link href="~/css/Aaccordion.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/lib/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
+}

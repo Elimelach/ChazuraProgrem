@@ -1,0 +1,70 @@
+﻿@model Payment
+@inject ISessCook Sess
+@{
+    ViewBag.Title = "Payment info";
+    DateTime date = Sess.GetSponsor().SponsorData.Date;
+    string hebrawDate = CalendarHebrew.GetHebrewDateString(date);
+}
+<div class="entry-form">
+    <h1>Enter your card information </h1>
+    <h4>sponsoring <span class="text-primary">@date.ToShortDateString() ~ @hebrawDate</span></h4>
+    <form asp-action="Payment" method="post"class="spin-at-Submit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="PaymentId" hidden />
+        <input asp-for="UserId" hidden />
+        <div class=" row offset-sm-3">
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="CardType" value="@CreditCard.Visa">
+                <label class="form-check-label" asp-for="CardType">Visa</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="CardType" value="@CreditCard.MasterCard">
+                <label class="form-check-label" asp-for="CardType">MasterCard</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="CardType" value="@CreditCard.Amex">
+                <label class="form-check-label" asp-for="CardType">Amex</label>
+            </div>
+            <div class="form-check mr-3">
+                <input type="radio" class="form-check-input" asp-for="CardType" value="@CreditCard.Discover">
+                <label class="form-check-label" asp-for="CardType">Discover</label>
+            </div>
+          
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="CC_Number">Card number </label>
+            <input asp-for="CC_Number" class="form-control col-sm-7">
+            <span asp-validation-for="CC_Number" class="text-danger col-sm-2"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="ExpDate">Exp date</label>
+            <input asp-for="ExpDate" class="form-control col-sm-7">
+            <span asp-validation-for="ExpDate" class="text-danger col-sm-2"></span>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="BCN">Security number</label>
+            <input asp-for="BCN" class="form-control col-sm-7">
+            <span asp-validation-for="BCN" class="text-danger col-sm-2"></span>
+
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-3" asp-for="ZipCode">5 digit zip code</label>
+            <input asp-for="ZipCode" class="form-control col-sm-7">
+            <span asp-validation-for="ZipCode" class="text-danger col-sm-2"></span>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/additional-methods.min.js"></script>
+}

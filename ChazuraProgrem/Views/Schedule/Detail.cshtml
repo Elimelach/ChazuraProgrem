@@ -1,0 +1,124 @@
+﻿@model DetailVM;
+@{
+    ViewBag.Title = "Page Details";
+    string goAction = "GetScheduleMultiple";
+    if (Model.GoBackInfo == 1) goAction = "GetSchedule1";
+    string days = Model.GoBackInfo == 1 ? "" : Model.GoBackInfo.ToString();
+    string deleteAction = Model.IsCustom ? "DeleteCustom" : "Delete";
+}
+
+
+
+
+<h2 class="text-center text-white">Details for @Model.TargtedLimudDTO.LimudStringHebraw</h2>
+<hr />
+<div class="row">
+
+
+    <div class="col-sm-4 offset-sm-1">
+        <h4 class="mb-2">@Model.TargtedLimudDTO.HebrawData</h4>
+        <p>Cycle: @Model.TargtedLimudDTO.LimudTimes</p>
+        <p>
+            Status:&nbsp;<span class="compPText">
+                @{
+                    if (Model.TargtedLimudDTO.Completed == true)
+                    {
+                        <text>Completed</text>
+                    }
+                    else
+                    {
+                        <text>Incomplete</text>
+                    }
+                }
+            </span>
+        </p>
+        <p>  <partial name="_CompletedPartial" model="Model.TargtedLimudDTO" /></p>
+    </div>
+    <div class="col-sm-6">
+        <p>Date started(this cycle): @Model.DateStarted.ToShortDateString() ~ @Model.DateStarted.ToHebrewDate()</p>
+        <p>Ending date (this cycle): @Model.DateEnd.ToShortDateString() ~ @Model.DateEnd.ToHebrewDate()</p>
+        @{
+            if (Model.TargtedLimudDTO.ChazurahType == ChazurahType.ShasAllAumid ||
+                Model.TargtedLimudDTO.ChazurahType == ChazurahType.ShasAllDaf)
+            {
+                <p>Date started shas(this cycle): @Model.DateStartedAll.ToShortDateString() ~ @Model.DateStartedAll.ToHebrewDate()</p>
+                <p>Date ending shas(this cycle): @Model.DateEndAll.ToShortDateString() ~ @Model.DateEndAll.ToHebrewDate()</p>
+
+            }
+        }
+    </div>
+    <div class="d-none d-sm-block col-sm-1">
+        <div class="btn-group-vertical" role="group">
+            <a class="nav-link btn btn-primary mb-1" asp-action="Edit" asp-route-id="@Model.TargtedLimudDTO.LimudChartId"
+               asp-route-type="@Model.TargtedLimudDTO.ChazurahType">Edit</a>
+            <button class="nav-link btn btn-primary mb-1" id="btnDelete">Delete</button>
+            <a class="nav-link btn btn-primary" asp-action="@goAction" asp-route-date="@Model.TargtedLimudDTO.LimudDate.GetDashDate()"
+               asp-route-days="@days">Back</a>
+        </div>
+    </div>
+    <div class="text-center col d-block d-sm-none">
+        <div class="btn-group" role="group">
+            <a class="nav-link btn btn-primary mr-1" asp-action="Edit" asp-route-id="@Model.TargtedLimudDTO.LimudChartId"
+               asp-route-type="@Model.TargtedLimudDTO.ChazurahType">Edit</a>
+            <button class="nav-link btn btn-primary mr-1" id="btnDelete">Delete</button>
+            <a class="nav-link btn btn-primary" asp-action="@goAction" asp-route-date="@Model.TargtedLimudDTO.LimudDate.GetDashDate()"
+               asp-route-days="@days">Back</a>
+        </div>
+    </div>
+    <div class="offset-sm-2 col-sm-8">
+        <h4 class="text-center">All other times this page was/is  scheduled</h4>
+        <div class="row col">
+            @foreach (var l in Model.LimudDTOs)
+            {
+                <div class="form-group col-sm-4 col-md-4">
+                    <p>
+                        @l.HebrawData ~ @l.LimudDate.ToShortDateString()
+                        <span class="badge badge-info badge-pill">@l.LimudTimes</span>
+                    </p>
+                    <p>
+                        Status:&nbsp;<span class="compPText">
+                            @{
+                                if (l.Completed == true)
+                                {
+                                    <text>Completed</text>
+                                }
+                                else
+                                {
+                                    <text>Incomplete</text>
+                                }
+                            }
+                        </span>
+                    </p>
+                    <partial name="_CompletedPartial" model="l" />
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+</div>
+
+@section styles{
+    <link href="~/css/LightBoxDelete.css" rel="stylesheet" />
+}
+@section LightBox{
+    <div id="overlayer" style="display:none">
+        <div id="lightBox" class="rounded-lg col-sm-4 offset-sm-4">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete the Schedule of @Model.TargtedLimudDTO.MeschTitle</p>
+            <form method="post" asp-action="@deleteAction">
+                <input asp-for="TargtedLimudDTO.LimudChartId" name="ChartId" hidden />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+@section Scripts{
+
+    <script src="~/js/CompletedAjax_Detail.js"></script>
+    <script src="~/js/LightBoxDelete.js"></script>
+}

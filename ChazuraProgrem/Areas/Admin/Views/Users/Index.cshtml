@@ -1,0 +1,99 @@
+﻿@model GridVM<User>
+@using Microsoft.AspNetCore.Identity; 
+@inject UserManager<User> usermeneger;
+    <ul class="nav nav-pills mt-5 mb-0">
+        <li class="nav-item">
+            <my-sorting-link filter-field="all"class="nav-link"mark-it-active filter-only
+                             current="@Model.CurrentRoute">View all</my-sorting-link>
+            
+        </li>
+        <li class="nav-item">
+            <my-sorting-link filter-field="sponsor" class="nav-link"mark-it-active filter-only
+                             current="@Model.CurrentRoute">View sponsers</my-sorting-link>
+
+        </li>
+        <li class="nav-item">
+            <my-sorting-link filter-field="admin"class="nav-link"mark-it-active filter-only
+                             current="@Model.CurrentRoute">View admin</my-sorting-link>
+
+        </li>
+    </ul>
+<table class="table table-bordered table-striped table-sm bg-white">
+<thead class="thead-dark ">
+    <tr>
+        <th>
+            <my-sorting-link sort-field="@nameof(ChazuraProgram.Models.User.FirstName)"
+                             current="@Model.CurrentRoute">First Name</my-sorting-link>
+        </th>
+        <th>
+            <my-sorting-link sort-field="@nameof(ChazuraProgram.Models.User.LastName)"
+                             current="@Model.CurrentRoute">Last Name</my-sorting-link>
+        </th>
+        <th>Email</th>
+        <th><my-sorting-link sort-field="@nameof(ChazuraProgram.Models.User.UserName)"
+                 current="@Model.CurrentRoute">UserName</my-sorting-link></th>
+        <th>Roles</th>
+        <th>Password</th>
+        <th>Login into acc.</th>
+        <th>Edit roles</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (User user in Model.Items)
+    {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@user.Id">
+                    @user.FirstName
+                </a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@user.Id">
+                   
+                    @user.LastName
+                </a>
+            </td>
+            <td>
+               @user.Email
+            </td>
+            <td>
+                @user.UserName
+            </td>
+            <td>
+                @{ 
+                    foreach (var item in user.RoleNames)
+                    {
+                        <div>
+                            @item
+                        </div>
+                    }
+                }
+            </td>
+            <td>
+                @user.SavedPassword
+            </td>
+            <td>
+                @{
+                    if (!await usermeneger.IsInRoleAsync(user,RoleNames.Admin)
+                         && !await usermeneger.IsInRoleAsync(user, RoleNames.Manager))
+                    {
+		                 <form method="post" asp-action="SetUser">
+                             <input hidden name="ReturnUrl" value="Index" />
+                             <input hidden value="@user.UserName" name="Username" />
+                             <button type="submit" class="btn btn-outline-primary">Login</button>
+                          </form> 
+	                }
+                 }
+            </td>
+          <td>
+              <button type="button"class="btn btn-primary roleEdit" value="@user.Id">Edit Roles</button>
+          </td>
+        </tr>
+    }
+</tbody>
+</table>
+<div id="re"></div>
+<partial name="_PagingLinksPartial" />
+@section Scripts{ 
+    <script src="~/js/EditRolesAjax_Users.js"></script>
+}

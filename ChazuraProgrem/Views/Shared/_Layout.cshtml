@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Chazura Program</title>
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap-5.0.0-beta1-dist/css/bootstrap.css" rel="stylesheet" />*@
+    @RenderSection("styles", required: false)
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar  navbar-expand-md navbar-dark bg-dark mynav fixed-top">
+            <div class="container-fluid">
+                <a class="nav-link navbar-brand navtext" mark-it-active asp-area="" asp-controller="Home" asp-action="HomePage">Home</a>
+
+
+                @* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Chazura Program</a>*@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse " id="main-nav-collapse">
+                    <ul class="navbar-nav mr-auto ">
+
+                        <li class="nav-item navtext">
+                            <a class="nav-link navtext" mark-it-active asp-area="" asp-controller="About" asp-action="Index">About</a>
+                        </li>
+                        <li class="nav-item navtext">
+                            <a class="nav-link" mark-it-active asp-area="" asp-controller="Schedule" asp-action="Index">Schedule</a>
+                        </li>
+                        <li class="nav-item navtext">
+                            <a class="nav-link" mark-it-active asp-area="" asp-controller="Sponsership" asp-action="Index">Sponsor</a>
+                        </li>
+                        <li class="nav-item navtext">
+                            <a asp-controller="Home" asp-action="Instructions"mark-it-active action-only class="nav-link">Using me</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-outline-light dropdown-toggle"
+                                        id="acctDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Account
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="acctDropdown">
+                                    @{
+                                        bool isSignedIn = true;
+                                        if (User.Identity.Name == null)
+                                        {
+                                            isSignedIn = false;
+                                        }
+                                    }
+                                    <partial name="_AcctDropDownPartial" model="isSignedIn" />
+                                </div>
+                            </div>
+                        </li>
+                       
+                       
+
+                    </ul>
+                    <ul class="navbar-nav navbar-right navtext">
+                        <li class="nav-item">
+                            <a class="nav-link" mark-it-active asp-area="Admin" asp-controller="Home" asp-action="Index" my-mark-area-active>Admin</a>
+                        </li>
+                        <vc:admin-login-user></vc:admin-login-user>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron mb-0 pb-1">
+            <h1 class="text-center text-white my-site-logo">חוזר חזרה</h1>
+            <div class="row">
+                <h3 class="col-sm-5 text-white d-none d-sm-block">The right way to remember your learning</h3>
+                <h3 class="col-sm-5 offset-sm-2 text-white text-center text-sm-right">הדרך הנכונה לזכור לימודים שלך לאורך זמן</h3>
+            </div>
+            <div class="row ml-1">
+                <div class="text-center text-white col-sm-6 order-sm-1">
+                    <vc:get-sponsor></vc:get-sponsor>
+                </div>
+
+                <div class="col-sm-3 order-sm-0"><partial name="_LoginAndRegisterLinksPartial" /></div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @if (TempData.Keys.Contains("sessMsg"))
+            {
+                <h4 class="bg-info text-center text-white p-2 rounded">@TempData["sessMsg"]</h4>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer  text-white">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Chazura Program
+        </div>
+    </footer>
+   
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+
+    @RenderSection("LightBox", required: false)
+    <div id="overlay" style="display:none">
+        <div class='spinner'>
+        </div>
+    </div>
+</body>
+</html>

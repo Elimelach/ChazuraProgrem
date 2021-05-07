@@ -1,0 +1,82 @@
+﻿@model ScheduleVM
+@{
+}
+
+<h4>@Model.GetLimudString(Model.LimudChart.ChazurahType)</h4>
+<hr />
+<form method="post" asp-action="SetSchedule"class="spin-at-Submit">
+    <div asp-validation-summary="ModelOnly"></div>
+
+
+    <input asp-for="LimudChart.ChazurahType" hidden />
+    @{
+        if (@Model.LimudChart.ChazurahType == ChazurahType.ShasMeshchtaDaf
+            || Model.LimudChart.ChazurahType == ChazurahType.ShasMeschteAumid)
+        {
+            <div class="form-group row">
+                <div class="col-12">
+                    <label asp-for="LimudChart.MeshctaCode">Select a mesachta</label>
+                </div>
+                <div class="col-sm-8">
+                    <select asp-for="LimudChart.MeshctaCode" class="form-control "
+                            asp-items="@(new SelectList(Model.GetMeschtaDic(),"Key","Value"))"></select>
+                </div>
+                <div class="col-12 text-warning">
+                    <span asp-validation-for="LimudChart.MeshctaCode"></span>
+                </div>
+            </div>
+        }
+    }
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <label asp-for="LimudChart.DateStarted">Select a date to start</label>
+        </div>
+        <div class="col-sm-8">
+            <p>You could use the hebrew select list for help </p>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="LimudChart.DateStarted" type="date" class="form-control " />
+        </div>
+        <div class="col-sm-4">
+            <select id="hdl" class="form-control "
+                    asp-items="@(new SelectList(Model.DatesList,"Key","Value"))"></select>
+        </div>
+        <div class="col-12 text-warning">
+            <span asp-validation-for="LimudChart.DateStarted"></span>
+        </div>
+    </div>
+    <div class="form-group  row">
+        <div class="col-12"> <label asp-for="LimudChart.YearsChazurah">Years to continue the chazura</label></div>
+        <div class=" col-sm-8">
+            <input class="form-control" asp-for="LimudChart.YearsChazurah" />
+        </div>
+        <div class="col-12 text-warning">
+            <span asp-validation-for="LimudChart.YearsChazurah"></span>
+        </div>
+
+    </div>
+    <div class="form-group col-12">
+        <div class="mb-3 form-check form-switch">
+            <input class="form-check-input" type="checkbox"  asp-for="LimudChart.EmailNotify">
+            <label class="form-check-label" asp-for="LimudChart.EmailNotify">Send me a daily email reminder </label>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="offset-2 col-sm-4">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Cancel</a>
+        </div>
+    </div>
+
+
+
+
+</form>
+<script>
+    
+    $("#hdl").change(() => {
+        $("#LimudChart_DateStarted").val($("#hdl").val());
+    });
+   
+</script>

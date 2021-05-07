@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> signInManager
+@inject UserManager<User> userManeger
+
+<ul class="navbar-nav">
+    
+        @if (signInManager.IsSignedIn(User))
+        {
+            User user = await userManeger.FindByNameAsync(User.Identity.Name);
+            // signed-in user - Log Out button and username
+        <li class="nav-item">
+            <form method="post" asp-action="LogOut" asp-controller="Account"
+                  asp-area="">
+                <span class="text-light mr-1">Hi @user.FirstName</span>
+                <input type="submit" value="Log Out"
+                       class="btn btn-outline-light" />
+                
+            </form>
+        </li>
+    }
+    else
+    {
+
+        // anonymous user - Register link and Log In button
+       
+        <li class="nav-item">
+            <a asp-action="Login" asp-controller="Account"
+               asp-area="" class="btn btn-outline-light" mark-it-active action-only>Log In</a>
+        </li>
+    }
+</ul class="navbar-nav">

@@ -1,0 +1,15 @@
+﻿@model Status
+@{
+    List<Status> statuses = new List<Status> { Status.pending, Status.accepted, Status.rejected };
+    foreach (var item in statuses)
+    {
+        if (item == Model)
+        {
+            <option value="@item" selected>@item.ToString()</option>
+        }
+        else
+        {
+            <option value="@item" >@item.ToString()</option>
+        }
+    }
+}
