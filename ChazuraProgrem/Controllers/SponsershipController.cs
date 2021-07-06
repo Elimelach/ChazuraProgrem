@@ -184,17 +184,8 @@ namespace ChazuraProgram.Controllers
             }
             Data.Payment.Insert(info.Payment);
             Data.Save();
-            int paymentId = Data.Payment.GetWithLinq(new QueryOptions<Payment>
-            {
-                Where = p => p.CC_Number == info.Payment.CC_Number &&
-                  p.DateEnterd == info.Payment.DateEnterd
-            }).Select(p => p.PaymentId).FirstOrDefault();
-            if (paymentId == 0) 
-            {
-                throw new InvalidOperationException("Can't get the payment id");
-            }
             var sponser = info.SponsorData;
-            sponser.PaymentId = paymentId;
+            sponser.PaymentId = info.Payment.PaymentId;
             Data.Sponsor.Insert(sponser);
             Data.Save();
             SessCook.ClearSponsor();

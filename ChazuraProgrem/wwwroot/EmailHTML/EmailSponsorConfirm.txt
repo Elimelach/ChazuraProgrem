@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="height: 100%; background-color: #d3e2be;">
+    <h1 style="text-align: center;margin-top: 2em;font-size: xxx-large; color: #2c8498; text-shadow: 2px 1px #42d018;margin-bottom: 1.5em;">Confirming your sponsorship
+    </h1>
+    <h3 style="text-align: center;font-size:1.4em;font-family:'Arial Rounded MT'">Hi zz-name</h3>
+    <section style="width:75%;margin:auto;font-size:1.7em;text-align: center">
+        <p>Your sponsoring of the chazura site on <span style="color:#f30b0b">zz-date</span> have been confirmed. </p>
+        <p>You will be charged on <span style="color:#f30b0b">zz-paydate</span> with the amount of <span style="color:#f30b0b">zz-amt</span> from your zz-cardtype card ending in <span style="color:#f30b0b">***zz-ccnumber</span>.</p>
+    </section>
+    <p><a href="zz-link" style="width:fit-content; margin: auto; font-size: 1.3em;
+    padding: .6em 1.7em;
+    text-decoration: none;
+    color: #e6dec6; border-radius: 6px; background-color: darkseagreen; display: block;">Click for more details</a></p>
+    <p style="        margin-top: 5em;
+        text-align: center;
+        font-size: 1.5em;
+        color: #0b5439;
+        font-family: 'Times New Roman', Times, serif;">Thanks for your donation</p>
+
+</body>
+</html>

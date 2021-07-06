@@ -37,6 +37,7 @@ namespace ChazuraProgram.Models
                 GetMsg());
            
         }
+       
 
         private string GetMsg() => base.ErrorMessage ??
                $" Date must be at between {MinDate.ToShortDateString()} and {MaxDate.ToShortDateString()}.";

@@ -4,6 +4,8 @@ using ChazuraProgram.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Routing;
 
 namespace ChazuraProgram.Controllers
 {
@@ -45,7 +47,7 @@ namespace ChazuraProgram.Controllers
         }
         //[Authorize]
         public IActionResult HomePage()
-        {
+        { 
             GetScheduleVM VM = new GetScheduleVM();
             return View("HomePage", VM);
         }

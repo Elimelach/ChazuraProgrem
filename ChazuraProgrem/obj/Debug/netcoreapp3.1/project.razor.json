@@ -14773,6 +14773,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\eli\\source\\repos\\ChazuraProgrem\\ChazuraProgrem\\Views\\Shared\\_LoginAndRegisterLinksPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_LoginAndRegisterLinksPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\eli\\source\\repos\\ChazuraProgrem\\ChazuraProgrem\\Areas\\Admin\\Views\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -14870,6 +14875,11 @@
     {
       "FilePath": "c:\\Users\\eli\\source\\repos\\ChazuraProgrem\\ChazuraProgrem\\Views\\Home\\Instructions.cshtml",
       "TargetPath": "Views\\Home\\Instructions.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\eli\\source\\repos\\ChazuraProgrem\\ChazuraProgrem\\Views\\Shared\\_AcctDropDownPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_AcctDropDownPartial.cshtml",
       "FileKind": "mvc"
     },
     {

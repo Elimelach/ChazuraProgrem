@@ -9,12 +9,12 @@ namespace ChazuraProgram.Controllers
 {
     public class AboutController : Controller
     {
-        //public AboutController(IMailer mailer)
-        //{
-        //    Mailer = mailer;
-        //} 
-       
-        //private IMailer Mailer { get; set; }
+        public AboutController(IMailer mailer)
+        {
+            Mailer = mailer;
+        }
+
+        private IMailer Mailer { get; set; }
         public IActionResult Index()
         {
             //Mailer.SendEmailAsync("elimelacho@Gmail.com", "test", "hello").Wait();
