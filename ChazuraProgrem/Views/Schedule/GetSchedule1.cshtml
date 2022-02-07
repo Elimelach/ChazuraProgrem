@@ -44,8 +44,8 @@
                     </p>
                     <div class="form-group text-center">
                         <partial name="_CompletedPartial" model="l" />
-                        <a class="btn badge-light text-info"  asp-action="Detail" asp-route-id="@l.LimudChartId" asp-route-date="@l.LimudDate.GetDashDate()"asp-route-pageId="@l.LimudId.GetDashString()"
-                           asp-route-description="@l.LimudStringEng.GetDashString()"asp-route-ChazurahType="@l.ChazurahType" asp-route-ChazuraTimes="@l.ChazuraTimes">More Details</a>
+                        <a class="btn badge-light text-info" asp-action="Detail" asp-route-id="@l.LimudChartId" asp-route-date="@l.LimudDate.GetDashDate()" asp-route-pageId="@l.LimudId.GetDashString()"
+                           asp-route-description="@l.LimudStringEng.GetDashString()" asp-route-ChazurahType="@l.ChazurahType" asp-route-ChazuraTimes="@l.ChazuraTimes">More Details</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
 {
     <div class="text-center">Nothing scheduled</div>
 }
-@section Scripts{ 
+@section Scripts{
     <script src="~/js/CompletedAjax.js"></script>
 }
 

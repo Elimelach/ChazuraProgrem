@@ -13,6 +13,7 @@ namespace ChazuraProgram.Areas.Admin.Models
             : base(sess, values, defaultSortField) {
             Routes.FilterTime = values.FilterTime;
             Routes.StartDate = values.StartDate;
+            SaveRouteSegments();
         }
         public bool IsFilterByAproved => Routes.Filter == "aproved";
         public bool IsFilterByPending => Routes.Filter == "pending";

@@ -16,6 +16,9 @@ namespace ChazuraProgram.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private SessCook SessCook { get; set; }
         private IChazuraUnitOfWork Data { get; set; }
+
+        private IHttpContextAccessor d;
+
         public AccountController(UserManager<User> userMngr, SignInManager<User> signInMngr, RoleManager<IdentityRole> role
             , IHttpContextAccessor ctx,IChazuraUnitOfWork data)
         {
@@ -24,6 +27,7 @@ namespace ChazuraProgram.Controllers
             roleManager = role;
             SessCook = new SessCook(ctx);
             Data = data;
+            d = ctx;
         }
         public IActionResult Index()
         {

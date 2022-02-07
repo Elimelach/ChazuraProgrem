@@ -94,8 +94,17 @@ namespace ChazuraProgram.Controllers
         [Route("[controller]/[action]/{Id}/{Date}/{PageId}/{Description}/{ChazurahType}/{ChazuraTimes}")]
         public IActionResult Detail(DetailPram pram)
         {
-            _ = new RouteBuilder(SessCook, pram);
-            DetailVM model = Requests.GetDetailVM_Loaded(user,pram);
+            DetailVM model;
+            try
+            {
+                _ = new RouteBuilder(SessCook, pram);
+                 model = Requests.GetDetailVM_Loaded(user, pram);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
 
             model.GoBackInfo = SessCook.GetRedirectFromDetails();
             if (model.TargtedLimudDTO.ChazurahType == ChazurahType.Custom)
@@ -155,14 +164,14 @@ namespace ChazuraProgram.Controllers
                 };
                 Data.Completed.Insert(completed);
                 Data.Save();
-                Completed completed1 = Data.Completed.Get(new QueryOptions<Completed>
-                {
-                    Where = c => c.LimudChartId == limudDTO.LimudChartId &&
-                      c.LimudFinishedCode == limudDTO.LimudId && c.ChazuraTimes == limudDTO.ChazuraTimes
-                });
+                //Completed completed1 = Data.Completed.Get(new QueryOptions<Completed>
+                //{
+                //    Where = c => c.LimudChartId == limudDTO.LimudChartId &&
+                //      c.LimudFinishedCode == limudDTO.LimudId && c.ChazuraTimes == limudDTO.ChazuraTimes
+                //});
                 compDTO.BtnText = "Unmark completed";
                 compDTO.CompVal = true;
-                compDTO.CompId = completed1.CompId;
+                compDTO.CompId = completed.CompId;
                 compDTO.CompText = "Completed";
             }
            

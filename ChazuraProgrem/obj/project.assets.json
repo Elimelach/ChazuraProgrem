@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
+    ".NETCoreApp,Version=v3.1": {
       "Castle.Core/4.4.0": {
         "type": "package",
         "dependencies": {
@@ -50,10 +50,10 @@
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.1": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.KeyDerivation/5.0.1": {
@@ -62,10 +62,10 @@
           "Microsoft.AspNetCore.Cryptography.Internal": "5.0.1"
         },
         "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         }
       },
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
@@ -87,10 +87,10 @@
           "Microsoft.Extensions.Identity.Stores": "5.0.1"
         },
         "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
+          "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
+          "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
         }
       },
       "Microsoft.AspNetCore.JsonPatch/3.1.9": {
@@ -613,10 +613,10 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
         },
         "compile": {
-          "lib/net5.0/Microsoft.Extensions.DependencyInjection.dll": {}
+          "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.Extensions.DependencyInjection.dll": {}
+          "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
@@ -633,13 +633,14 @@
         "dependencies": {
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "5.0.1",
           "Microsoft.Extensions.Logging": "5.0.0",
-          "Microsoft.Extensions.Options": "5.0.0"
+          "Microsoft.Extensions.Options": "5.0.0",
+          "System.ComponentModel.Annotations": "5.0.0"
         },
         "compile": {
-          "lib/net5.0/Microsoft.Extensions.Identity.Core.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.Extensions.Identity.Core.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll": {}
         }
       },
       "Microsoft.Extensions.Identity.Stores/5.0.1": {
@@ -650,10 +651,10 @@
           "Microsoft.Extensions.Logging": "5.0.0"
         },
         "compile": {
-          "lib/net5.0/Microsoft.Extensions.Identity.Stores.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.Extensions.Identity.Stores.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll": {}
         }
       },
       "Microsoft.Extensions.Logging/5.0.0": {
@@ -662,7 +663,8 @@
           "Microsoft.Extensions.DependencyInjection": "5.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Options": "5.0.0"
+          "Microsoft.Extensions.Options": "5.0.0",
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.Extensions.Logging.dll": {}
@@ -687,10 +689,10 @@
           "Microsoft.Extensions.Primitives": "5.0.0"
         },
         "compile": {
-          "lib/net5.0/Microsoft.Extensions.Options.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Options.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.Extensions.Options.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Options.dll": {}
         }
       },
       "Microsoft.Extensions.Primitives/5.0.0": {
@@ -1623,10 +1625,10 @@
       "System.Diagnostics.DiagnosticSource/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         },
         "runtime": {
-          "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
       "System.Diagnostics.Tools/4.3.0": {
@@ -9692,7 +9694,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0": [
+    ".NETCoreApp,Version=v3.1": [
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.1",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.1",
@@ -9720,15 +9722,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9739,8 +9741,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",

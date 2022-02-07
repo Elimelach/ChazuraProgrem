@@ -47,7 +47,6 @@ C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\bin\Debug\netcoreapp3.1\
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\ChazuraProgram.csprojAssemblyReference.cache
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\ChazuraProgram.AssemblyInfoInputs.cache
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\ChazuraProgram.AssemblyInfo.cs
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\ChazuraProgram.RazorAssemblyInfo.cache
@@ -209,7 +208,7 @@ C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Account\EditInfo.cshtml.g.cs
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Account\EditInfoAll.cshtml.g.cs
-C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Home\_AcctDropDownPartial.cshtml.g.cs
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Home\Instructions.cshtml.g.cs
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AcctDropDownPartial.cshtml.g.cs
 C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginAndRegisterLinksPartial.cshtml.g.cs
+C:\Users\eli\source\repos\ChazuraProgrem\ChazuraProgrem\obj\Debug\netcoreapp3.1\ChazuraProgram.csproj.AssemblyReference.cache

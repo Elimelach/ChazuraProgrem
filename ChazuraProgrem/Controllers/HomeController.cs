@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Http;
 
 namespace ChazuraProgram.Controllers
 {
@@ -13,9 +14,12 @@ namespace ChazuraProgram.Controllers
     {
         public UserManager<User> UserManager { get; private set; }
 
+        private IHttpContextAccessor gj;
+
         public HomeController(UserManager<User> userManager)
         {
             UserManager = userManager;
+            
         }
 
         //private ChazuraContext Context { get; set; }

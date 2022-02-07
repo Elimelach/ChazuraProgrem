@@ -45,7 +45,6 @@ namespace ChazuraProgram.Areas.Admin.Controllers
            
             var requsts = new AdminSponsorRequests(SponData, SessCook);
             var model = requsts.GetListOfSponserdDates(gridDTO);
-           
             return View(model);
         }
         [HttpPost]
